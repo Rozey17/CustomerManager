@@ -83,6 +83,10 @@
       <Project>{e6d46932-a2c3-4de8-afa6-0feef55d5fc8}</Project>
       <Name>CustomerManager.BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomerManager.Common\CustomerManager.Common.csproj">
+      <Project>{645223e1-cb1a-4d60-9404-223a7ff2b160}</Project>
+      <Name>CustomerManager.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
