@@ -15,6 +15,9 @@ namespace CustomerManager.Presentation
         [STAThread]
         static void Main()
         {
+            // Register SQL Provider on start up
+            Insight.Database.SqlInsightDbProvider.RegisterProvider(); 
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ShellView());
