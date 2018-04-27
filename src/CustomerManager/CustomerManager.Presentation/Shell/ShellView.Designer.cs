@@ -82,6 +82,9 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -91,6 +94,7 @@
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
+            this.customersToolStripMenuItem,
             this.editMenu,
             this.viewMenu,
             this.toolsMenu,
@@ -526,6 +530,28 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
+            // customersToolStripMenuItem
+            // 
+            this.customersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customersListToolStripMenuItem,
+            this.customerTypesToolStripMenuItem});
+            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.customersToolStripMenuItem.Text = "Customers";
+            // 
+            // customerTypesToolStripMenuItem
+            // 
+            this.customerTypesToolStripMenuItem.Name = "customerTypesToolStripMenuItem";
+            this.customerTypesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customerTypesToolStripMenuItem.Text = "Customer Types";
+            this.customerTypesToolStripMenuItem.Click += new System.EventHandler(this.customerTypesToolStripMenuItem_Click);
+            // 
+            // customersListToolStripMenuItem
+            // 
+            this.customersListToolStripMenuItem.Name = "customersListToolStripMenuItem";
+            this.customersListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customersListToolStripMenuItem.Text = "Customers List";
+            // 
             // ShellView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -605,6 +631,9 @@
         private System.Windows.Forms.ToolStripButton printPreviewToolStripButton;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customersListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerTypesToolStripMenuItem;
     }
 }
 

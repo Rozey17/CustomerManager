@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerManager.Presentation.Customers.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -102,6 +103,14 @@ namespace CustomerManager.Presentation.Views
             {
                 childForm.Close();
             }
+        }
+
+        private void customerTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new CustomerTypesView();
+            view.MdiParent = this;
+
+            view.Show();
         }
     }
 }
