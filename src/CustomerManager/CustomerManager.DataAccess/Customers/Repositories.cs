@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Insight.Database;
+using System.Configuration;
 
 namespace CustomerManager.DataAccess
 {
@@ -13,16 +14,16 @@ namespace CustomerManager.DataAccess
     {
         private readonly string _connectionString;
 
-        public CustomerTypeRepository(string connectionString)
+        public CustomerTypeRepository()
         {
-            _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+            _connectionString = ConfigurationManager.ConnectionStrings["mssql"].ConnectionString ?? throw new ArgumentNullException("connectionString");
         }
 
         public bool Insert(CustomerTypeModel model)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result = connection.Execute("InsertCustomerType");
+                var result = connection.Execute("InsertCustomerType", model);
 
                 return result > 0;
             }
