@@ -18,6 +18,16 @@ namespace CustomerManager.DataAccess
             _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
+        public bool Insert(CustomerTypeModel model)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var result = connection.Execute("InsertCustomerType");
+
+                return result > 0;
+            }
+        }
+
         public IEnumerable<CustomerTypeModel> GetAll()
         {
             using (var connection = new SqlConnection(_connectionString))
