@@ -60,6 +60,10 @@ namespace CustomerManager.Presentation.Customers.Views
         private void button2_Click(object sender, EventArgs e)
         {
 
+            //if (_engine.Insert(model))
+            //{
+            //    MessageBox.Show($"Le type de customer '{model.Name}' a été effacé avec succès", "SAVE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
         }
     }
 }

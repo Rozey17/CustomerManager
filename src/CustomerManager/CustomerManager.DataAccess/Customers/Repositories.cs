@@ -29,6 +29,16 @@ namespace CustomerManager.DataAccess
             }
         }
 
+        public bool Delete(CustomerTypeModel model)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var result = connection.Execute("DeleteCustomerType", model);
+
+                return result > 0;
+            }
+        }
+
         public IEnumerable<CustomerTypeModel> GetAll()
         {
             using (var connection = new SqlConnection(_connectionString))
