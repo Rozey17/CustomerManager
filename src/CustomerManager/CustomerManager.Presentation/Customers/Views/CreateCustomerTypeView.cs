@@ -33,5 +33,10 @@ namespace CustomerManager.Presentation.Customers.Views
                 MessageBox.Show($"Le type de customer '{model.Name}' a été enregistré avec succès", "SAVE", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
