@@ -70,8 +70,11 @@ namespace CustomerManager.Presentation.Customers.Views
             var rep = new CustomerTypeRepository();
             var selectedIndex = listView1.SelectedIndices[0];
             var selectCustomerType = _items.ElementAt(selectedIndex);
-            rep.Delete(selectCustomerType.Id);
-                                
+            if (rep.Delete(selectCustomerType.Id))
+            {
+                MessageBox.Show($"Le type de customer '{selectCustomerType.Name}' a été effacé avec succès", "DELETED", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }
