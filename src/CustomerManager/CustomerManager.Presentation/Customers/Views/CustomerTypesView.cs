@@ -1,19 +1,26 @@
 ﻿using CustomerManager.BusinessLogic;
+using CustomerManager.Common.Data.Models;
+using CustomerManager.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CustomerManager.Presentation.Customers.Views
 {
     public partial class CustomerTypesView : Form
     {
         private readonly CustomerTypeEngine _engine;
+
+        private List<CustomerTypeModel> _items;
+
 
         public CustomerTypesView()
         {
@@ -26,7 +33,7 @@ namespace CustomerManager.Presentation.Customers.Views
         {
             var view = new CreateCustomerTypeView();
 
-            view.ShowDialog();
+            view.ShowDialog(this);
 
             RefreshItems();
         }
@@ -38,11 +45,12 @@ namespace CustomerManager.Presentation.Customers.Views
 
         private void RefreshItems()
         {
-            var items = _engine.GetAll();
+            _items = _engine.GetAll().ToList();
 
             listView1.Items.Clear();
+            
 
-            foreach (var item in items)
+            foreach (var item in _items)
             {
                 var listItem = new ListViewItem(item.Id.ToString());
 
@@ -59,11 +67,11 @@ namespace CustomerManager.Presentation.Customers.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            //if (_engine.Insert(model))
-            //{
-            //    MessageBox.Show($"Le type de customer '{model.Name}' a été effacé avec succès", "SAVE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+            var rep = new CustomerTypeRepository();
+            var selectedIndex = listView1.SelectedIndices[0];
+            var selectCustomerType = _items.ElementAt(selectedIndex);
+            rep.Delete(selectCustomerType.Id);
+                                
         }
     }
 }

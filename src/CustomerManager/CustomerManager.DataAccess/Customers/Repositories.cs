@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Insight.Database;
 using System.Configuration;
+using System.Data;
 
 namespace CustomerManager.DataAccess
 {
@@ -29,13 +30,11 @@ namespace CustomerManager.DataAccess
             }
         }
 
-        public bool Delete(CustomerTypeModel model)
+        public void Delete(Guid name)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var result = connection.Execute("DeleteCustomerType", model);
-
-                return result > 0;
+                var output = connection.Execute("dbo.DeleteCustomerType ", new { Id = name });                
             }
         }
 
