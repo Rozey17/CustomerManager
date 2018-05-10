@@ -33,7 +33,7 @@ namespace CustomerManager.Presentation.Customers.Views
         {
             var view = new CreateCustomerTypeView();
 
-            view.ShowDialog(this);
+            view.ShowDialog();
 
             RefreshItems();
         }
@@ -68,8 +68,10 @@ namespace CustomerManager.Presentation.Customers.Views
         private void button2_Click(object sender, EventArgs e)
         {
             var rep = new CustomerTypeRepository();
+
             var selectedIndex = listView1.SelectedIndices[0];
             var selectCustomerType = _items.ElementAt(selectedIndex);
+
             if (rep.Delete(selectCustomerType.Id))
             {
                 MessageBox.Show($"Le type de customer '{selectCustomerType.Name}' a été effacé avec succès", "DELETED", MessageBoxButtons.OK, MessageBoxIcon.Information);

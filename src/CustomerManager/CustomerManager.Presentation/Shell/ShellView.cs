@@ -14,6 +14,12 @@ namespace CustomerManager.Presentation.Views
     public partial class ShellView : Form
     {
         private int childFormNumber = 0;
+        //private static ShellView _instance;
+        //public static ShellView GetInstance()
+        //{
+        //    if (_instance == null) _instance = new ShellView();
+        //    return _instance;
+        //}
 
         public ShellView()
         {
@@ -107,10 +113,19 @@ namespace CustomerManager.Presentation.Views
 
         private void customerTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var view = new CustomerTypesView();
-            view.MdiParent = this;
+            if (this.MdiChildren.OfType<CustomerTypesView>().Any()) return;
+            var view = new CustomerTypesView
+            {
+                MdiParent = this
+            };
+            view.Show();            
+            
+            
+        }
 
-            view.Show();
+        private void ShellView_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
