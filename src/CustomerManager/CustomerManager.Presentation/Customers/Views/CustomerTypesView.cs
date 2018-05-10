@@ -1,6 +1,5 @@
 ﻿using CustomerManager.BusinessLogic;
 using CustomerManager.Common.Data.Models;
-using CustomerManager.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,15 +66,18 @@ namespace CustomerManager.Presentation.Customers.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var rep = new CustomerTypeRepository();
-
             var selectedIndex = listView1.SelectedIndices[0];
             var selectCustomerType = _items.ElementAt(selectedIndex);
-
-            if (rep.Delete(selectCustomerType.Id))
+            if (MessageBox.Show($"Voulez vous vraiment supprimer l'élément '{selectCustomerType.Name}' ?", "DELETE", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                MessageBox.Show($"Le type de customer '{selectCustomerType.Name}' a été effacé avec succès", "DELETED", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (_engine.Delete(selectCustomerType.Id))
+                {
+                    MessageBox.Show($"Le type de customer '{selectCustomerType.Name}' a été effacé avec succès", "DELETED", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshItems();
+                }
             }
+
+            
 
         }
     }

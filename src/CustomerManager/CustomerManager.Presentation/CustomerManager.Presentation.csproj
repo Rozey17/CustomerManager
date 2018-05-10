@@ -128,10 +128,6 @@
       <Project>{645223e1-cb1a-4d60-9404-223a7ff2b160}</Project>
       <Name>CustomerManager.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CustomerManager.DataAccess\CustomerManager.DataAccess.csproj">
-      <Project>{07D62717-2460-4C2B-9DE3-950C97B4976E}</Project>
-      <Name>CustomerManager.DataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

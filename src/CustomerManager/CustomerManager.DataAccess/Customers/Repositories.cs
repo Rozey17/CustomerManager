@@ -30,11 +30,11 @@ namespace CustomerManager.DataAccess
             }
         }
 
-        public bool Delete(Guid name)
+        public bool Delete(Guid id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var output = connection.Execute("dbo.DeleteCustomerType", new { Id = name });
+                var output = connection.Execute("dbo.DeleteCustomerType", new { Id = id });
                 return output > 0;
             }
         }

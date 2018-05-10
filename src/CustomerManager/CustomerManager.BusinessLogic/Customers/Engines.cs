@@ -26,5 +26,13 @@ namespace CustomerManager.BusinessLogic
         {
             return _repository.GetAll();
         }
+
+        public bool Delete(Guid id)
+        {
+            if (id == Guid.Empty)
+                throw new ArgumentNullException(nameof(id));
+
+            return _repository.Delete(id);
+        }
     }
 }
