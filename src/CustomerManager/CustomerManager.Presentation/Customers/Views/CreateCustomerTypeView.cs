@@ -15,11 +15,12 @@ namespace CustomerManager.Presentation.Customers.Views
     public partial class CreateCustomerTypeView : Form
     {
         private readonly CustomerTypeEngine _engine;
+        private readonly CreateCustomerTypeValidator _validator;
 
         public CreateCustomerTypeView()
         {
             _engine = new CustomerTypeEngine();
-
+            _validator = new CreateCustomerTypeValidator();
             InitializeComponent();
         }
 
@@ -27,11 +28,22 @@ namespace CustomerManager.Presentation.Customers.Views
         {
             var name = textBox1.Text;
             var model = new CustomerTypeModel(Guid.NewGuid(), name);
+            var validationResult = _validator.Validate(model);
 
-            if(_engine.Insert(model))
+            if (validationResult.IsValid)
             {
-                MessageBox.Show($"Le type de customer '{model.Name}' a été enregistré avec succès", "SAVE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (_engine.Insert(model))
+                {
+                    MessageBox.Show($"Le type de customer '{model.Name}' a été enregistré avec succès", "SAVE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            else
+            {
+                var message = validationResult.Errors.FirstOrDefault().ErrorMessage;
+                MessageBox.Show(message,"ALERT",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
