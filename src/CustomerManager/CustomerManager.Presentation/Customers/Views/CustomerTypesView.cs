@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -37,8 +38,9 @@ namespace CustomerManager.Presentation.Customers.Views
             RefreshItems();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
+            await Task.Delay(5000); // every task is awaitable
             RefreshItems();
         }
 
@@ -48,7 +50,6 @@ namespace CustomerManager.Presentation.Customers.Views
 
             listView1.Items.Clear();
             
-
             foreach (var item in _items)
             {
                 var listItem = new ListViewItem(item.Id.ToString());
@@ -67,7 +68,9 @@ namespace CustomerManager.Presentation.Customers.Views
         private void button2_Click(object sender, EventArgs e)
         {
             var selectedIndex = listView1.SelectedIndices[0];
+
             var selectCustomerType = _items.ElementAt(selectedIndex);
+
             if (MessageBox.Show($"Voulez vous vraiment supprimer l'élément '{selectCustomerType.Name}' ?", "DELETE", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (_engine.Delete(selectCustomerType.Id))
@@ -75,10 +78,7 @@ namespace CustomerManager.Presentation.Customers.Views
                     MessageBox.Show($"Le type de customer '{selectCustomerType.Name}' a été effacé avec succès", "DELETED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshItems();
                 }
-            }
-
-            
-
+            }          
         }
     }
 }

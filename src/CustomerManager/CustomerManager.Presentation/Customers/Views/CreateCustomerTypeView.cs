@@ -15,7 +15,7 @@ namespace CustomerManager.Presentation.Customers.Views
     public partial class CreateCustomerTypeView : Form
     {
         private readonly CustomerTypeEngine _engine;
-        private readonly CreateCustomerTypeValidator _validator;
+        private readonly CreateCustomerTypeValidator _validator;// readonly pcq tu peux l'instancier qu'une seule fois
 
         public CreateCustomerTypeView()
         {
