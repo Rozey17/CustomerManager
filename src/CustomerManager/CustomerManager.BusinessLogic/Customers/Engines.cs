@@ -17,22 +17,22 @@ namespace CustomerManager.BusinessLogic
             _repository = new CustomerTypeRepository();
         }
 
-        public bool Insert(CustomerTypeModel model)
+        public Task<bool> InsertAsync(CustomerTypeModel model)
         {
-            return _repository.Insert(model);
+            return _repository.InsertAsync(model);
         }
 
-        public IEnumerable<CustomerTypeModel> GetAll()
+        public Task<IEnumerable<CustomerTypeModel>> GetAllAsync()
         {
-            return _repository.GetAll();
+            return _repository.GetAllAsync();
         }
 
-        public bool Delete(Guid id)
+        public Task<bool> DeleteAsync(Guid id)
         {
             if (id == Guid.Empty)
                 throw new ArgumentNullException(nameof(id));
 
-            return _repository.Delete(id);
+            return _repository.DeleteAsync(id);
         }
     }
 }

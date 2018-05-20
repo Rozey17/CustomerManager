@@ -24,7 +24,7 @@ namespace CustomerManager.Presentation.Customers.Views
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             var name = textBox1.Text;
             var model = new CustomerTypeModel(Guid.NewGuid(), name);
@@ -32,7 +32,7 @@ namespace CustomerManager.Presentation.Customers.Views
 
             if (validationResult.IsValid)
             {
-                if (_engine.Insert(model))
+                if (await _engine.InsertAsync(model))
                 {
                     MessageBox.Show($"Le type de customer '{model.Name}' a été enregistré avec succès", "SAVE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

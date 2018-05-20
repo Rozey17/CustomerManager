@@ -44,9 +44,9 @@ namespace CustomerManager.Presentation.Customers.Views
             RefreshItems();
         }
 
-        private void RefreshItems()
+        private async void RefreshItems()
         {
-            _items = _engine.GetAll().ToList();
+            _items = (await _engine.GetAllAsync()).ToList();
 
             listView1.Items.Clear();
             
@@ -65,7 +65,7 @@ namespace CustomerManager.Presentation.Customers.Views
             RefreshItems();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             var selectedIndex = listView1.SelectedIndices[0];
 
@@ -73,7 +73,7 @@ namespace CustomerManager.Presentation.Customers.Views
 
             if (MessageBox.Show($"Voulez vous vraiment supprimer l'élément '{selectCustomerType.Name}' ?", "DELETE", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (_engine.Delete(selectCustomerType.Id))
+                if (await _engine.DeleteAsync(selectCustomerType.Id))
                 {
                     MessageBox.Show($"Le type de customer '{selectCustomerType.Name}' a été effacé avec succès", "DELETED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshItems();
