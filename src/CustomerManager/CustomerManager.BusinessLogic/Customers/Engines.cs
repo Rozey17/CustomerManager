@@ -10,13 +10,16 @@ namespace CustomerManager.BusinessLogic
 {
     public class CustomerTypeEngine
     {
+        // We create a 
         private readonly CustomerTypeRepository _repository;
 
+        // Anytime we would create a CustomerTypeEngine object 
+        // it would create an instance of the CustomerTypeRepository class
         public CustomerTypeEngine()
         {
             _repository = new CustomerTypeRepository();
         }
-
+        
         public Task<bool> InsertAsync(CustomerTypeModel model)
         {
             return _repository.InsertAsync(model);
